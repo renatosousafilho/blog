@@ -1,0 +1,21 @@
+<h1>Lista de autores</h1>
+
+<%= @authors.size %> Autores cadastrados
+
+<br />
+
+<table>
+	<tr>
+		<th>Nome</th>
+		<th>Biografia</th>
+		<th>Registrado em</th>
+	</tr>
+	<% @authors.each do |author| %>
+		<tr>
+			<!--  td significa table data  -->
+			<td><%= author.name %></td> 
+			<td><%= author.bio %></td> 
+			<td><%= author.created_at %></td> 
+		</tr>
+	<% end %>
+</table>
