@@ -1,0 +1,11 @@
+<%= form_for @author, :class ="form" do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<br/> 
+	<%= f.label :bio %>
+	<%= f.text_area :bio %>
+
+	<br/>
+	<%= f.submit "Salvar" %>
+<% end %
