@@ -1,4 +1,6 @@
 class AuthorsController < ApplicationController
+	before_action :set_author, only: [:edit, :show, :update, :destroy, :posts]
+
 	# GET /authors
 	def index
 		@authors = Author.all
@@ -20,13 +22,43 @@ class AuthorsController < ApplicationController
 		end
 	end
 
+	# GET /authors/:id/edit
 	def edit
-		@author = Author.find(params[:id])
 	end
 
+	# GET /authors/:id
+	def show
+	end
+
+	# PUT /authors/:id
+	# PATCH /authors/:id
+	def update
+		if @author.update_attributes(author_params)
+			redirect_to authors_path, :notice => "Autor #{@author.name} foi atualizado com sucesso"
+		else
+			render :edit
+		end
+	end
+
+	# DELETE /authors/:id
+	def destroy
+		@author.destroy
+		redirect_to authors_path, :notice => "Autor #{@author.name} foi excluido!"
+	end
+
+	def posts 
+		@posts = @author.posts
+		render "posts/index"
+	end
+
+	
 	private
 
 	def author_params
 		params.require(:author).permit(:name, :bio)
+	end
+
+	def set_author
+		@author = Author.find(params[:id])
 	end
 end

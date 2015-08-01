@@ -8,16 +8,25 @@
 
 <table>
 	<tr>
+		<th>Id</th>
 		<th>Nome</th>
 		<th>Biografia</th>
 		<th>Registrado em</th>
+		<th>Oṕções</th>
 	</tr>
 	<% @authors.each do |author| %>
 		<tr>
 			<!--  td significa table data  -->
+			<td><%= author.id %></td>
 			<td><%= author.name %></td> 
 			<td><%= author.bio %></td> 
 			<td><%= author.created_at %></td> 
+			<td>
+				<%= link_to "Editar", edit_author_path(author) %>
+				<%= link_to "Visualizar", author_path(author) %>	
+				<%= link_to "Listar noticias", post_author_path(author) %>	
+				<%= link_to "Excluir", author_path(author), method: :delete, data: { confirm: "Deseja realmente excluir este a"} %>
+			</td>
 		</tr>
 	<% end %>
 </table>
