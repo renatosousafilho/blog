@@ -12,8 +12,21 @@
 
 <p>
 	<strong>Autor:</strong>
-	<%= @post.author.name %>
+	<%= @post.author.name rescue "-"%>
 </p>
+
+
+<%= form_for @comment do |f| %>
+	<div class="field">	
+		<%= f.label :body, "Digite aqui seu comentario" %><br/>
+		<%= f.text_area :body %>
+	</div>
+
+	<%= f.hidden_field :post_id, :value => @post.id %>
+	
+	<%= f.submit "Salvar comentário" %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
