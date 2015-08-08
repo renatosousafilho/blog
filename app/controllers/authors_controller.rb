@@ -46,9 +46,8 @@ class AuthorsController < ApplicationController
 		redirect_to authors_path, :notice => "Autor #{@author.name} foi excluido!"
 	end
 
-	def posts 
-		@posts = @author.posts
-		render "posts/index"
+	def posts
+		
 	end
 
 	

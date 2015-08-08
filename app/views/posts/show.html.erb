@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong>Título:</strong>
   <%= @post.title %>
 </p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>Texto:</strong>
   <%= @post.body %>
+</p>
+
+<p>
+	<strong>Autor:</strong>
+	<%= @post.author.name %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

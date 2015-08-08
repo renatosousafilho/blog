@@ -1,0 +1,10 @@
+<h1>Listando notícias do autor <%= @author.name %></h1>
+
+
+<p><%= @author.posts.size %> Noticias cadastradas</p>
+<ul>
+	<% for post in @author.posts %>
+		<li><%= link_to post.title, post_path(post.id) %></li>
+	<% end %>
+</ul>
+

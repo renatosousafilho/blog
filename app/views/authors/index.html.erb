@@ -24,8 +24,8 @@
 			<td>
 				<%= link_to "Editar", edit_author_path(author) %>
 				<%= link_to "Visualizar", author_path(author) %>	
-				<%= link_to "Listar noticias", post_author_path(author) %>	
 				<%= link_to "Excluir", author_path(author), method: :delete, data: { confirm: "Deseja realmente excluir este a"} %>
+				<%= link_to "Notícias", posts_author_path(author.id) %>
 			</td>
 		</tr>
 	<% end %>
