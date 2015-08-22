@@ -18,9 +18,9 @@
 		<tr>
 			<!--  td significa table data  -->
 			<td><%= author.id %></td>
-			<td><%= author.name %></td> 
-			<td><%= author.bio %></td> 
-			<td><%= author.created_at %></td> 
+			<td><%= author.email %></td> 
+			<td><%= author.author_role.name rescue "_" %></td> 
+			<td><%= author.author_role.bio rescue "-" %></td> 
 			<td>
 				<%= link_to "Editar", edit_author_path(author) %>
 				<%= link_to "Visualizar", author_path(author) %>	

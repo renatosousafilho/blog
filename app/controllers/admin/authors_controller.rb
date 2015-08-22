@@ -9,8 +9,6 @@ class Admin::AuthorsController < AdminController
 
 	def create
 		@author = Author.new(author_params)
-		user = User.create :email => "#{@author.name}@blog.com", :password => "changeme!", :role => :author
-		@author.user = user
 		if @author.save
 			redirect_to authors_path, :notice => "Autor cadastrado com sucesso!"
 		else
@@ -26,7 +24,7 @@ class Admin::AuthorsController < AdminController
 	private
 
 	def author_params
-		params.require(:author).permit(:name, :bio)
+		params.require(:author).permit(:email, :password)
 	end
 end
 

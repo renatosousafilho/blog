@@ -11,17 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822183215) do
+ActiveRecord::Schema.define(version: 20150822201635) do
 
-  create_table "authors", force: :cascade do |t|
+  create_table "author_roles", force: :cascade do |t|
     t.string   "name"
     t.text     "bio"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "user_id"
   end
-
-  add_index "authors", ["user_id"], name: "index_authors_on_user_id"
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -32,12 +30,19 @@ ActiveRecord::Schema.define(version: 20150822183215) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
 
+  create_table "manager_roles", force: :cascade do |t|
+    t.string   "secao"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "author_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "author_role_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,7 +58,7 @@ ActiveRecord::Schema.define(version: 20150822183215) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "role"
+    t.string   "type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

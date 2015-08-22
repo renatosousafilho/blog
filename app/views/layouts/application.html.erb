@@ -15,7 +15,7 @@
 </ul>
 
 <% if user_signed_in? %>
-	<p><%= current_user.email %>(<%= current_user.role %>)</p>
+	<p><%= current_user.email %>(<%= current_user.type %>)</p>
 	<p><%= link_to "sair", destroy_user_session_path, method: :delete %> </p>
 <% end %>
 

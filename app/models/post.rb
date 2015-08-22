@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-	belongs_to :author
+	belongs_to :author_role
 	has_many :comments
 	delegate :name, :to => :author, :prefix => "author"
 	delegate :bio, :to => :author, :prefix => "author"
