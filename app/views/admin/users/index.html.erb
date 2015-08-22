@@ -1,0 +1,27 @@
+<h1>Lista de Autores</h1>
+
+<p><%= flash[:notice] %></p>
+
+<p><%= @users.size %> Usuários cadastrados</p> 
+
+<br />
+
+<table>
+	<tr>
+		<th>Id</th>
+		<th>E-mail</th>
+		<th>Função</th>
+		<th>Perfil</th>
+	</tr>
+	<% @users.each do |user| %>
+		<tr>
+			<!--  td significa table data  -->
+			<td><%= user.id %></td>
+			<td><%= user.email %></td> 
+			<td><%= user.role %></td> 
+			<td><%= link_to("Ver Detalhes do Autor", admin_author_path(user.author.id)) if user.author? %></td> 
+
+		</tr>
+	<% end %>
+</table>
+
