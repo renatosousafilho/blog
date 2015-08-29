@@ -4,12 +4,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_and_belongs_to_many :roles
+
+
+
   def admin?
-  	role == :admin
+  	type == "Admin"
   end
 
   def author?
-  	role == "author"
+  	type == "Author"
   end
 
   def author
@@ -18,6 +22,11 @@ class User < ActiveRecord::Base
   	else
   		nil
   	end
+  end
+
+
+ def role_symbols
+    (roles || []).map {|r| r.title.to_sym}
   end
 
 end

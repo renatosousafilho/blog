@@ -49,3 +49,8 @@ gem "pry-rails", group: :development
 gem 'thin'
 
 gem "devise"
+
+
+gem "declarative_authorization"
+
+gem 'cancancan'

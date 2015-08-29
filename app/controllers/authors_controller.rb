@@ -1,5 +1,12 @@
 class AuthorsController < ApplicationController
 	before_action :set_author, only: [:edit, :show, :update, :destroy, :posts]
+	before_filter :authenticate_user!
+
+    # Declarative Authorization
+    # filter_resource_access
+
+    # CanCanCan
+    load_and_authorize_resource
 
 	# GET /authors
 	def index
@@ -54,10 +61,16 @@ class AuthorsController < ApplicationController
 	private
 
 	def author_params
-		params.require(:author).permit(:name, :bio)
+		params.require(:author).permit(:email, :password)
 	end
 
 	def set_author
 		@author = Author.find(params[:id])
 	end
+
+
+	protected
+		def permission_denied
+		  redirect_to authors_url, :notice => "Você não tem acesso a esta página."
+		end
 end

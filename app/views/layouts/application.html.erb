@@ -8,16 +8,7 @@
 </head>
 <body>
 
-<ul style="display:inline">
-	<li><%= link_to "Notícias", posts_path %></li>
-	<li><%= link_to "Autores",authors_path %></li>
-	<li><%= link_to "Comentários", comments_path %></li>
-</ul>
-
-<% if user_signed_in? %>
-	<p><%= current_user.email %>(<%= current_user.type %>)</p>
-	<p><%= link_to "sair", destroy_user_session_path, method: :delete %> </p>
-<% end %>
+<%= current_user.type %>
 
 
 <%= yield %>

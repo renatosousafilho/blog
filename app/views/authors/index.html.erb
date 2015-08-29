@@ -18,12 +18,11 @@
 		<tr>
 			<!--  td significa table data  -->
 			<td><%= author.id %></td>
-			<td><%= author.name %></td> 
-			<td><%= author.bio %></td> 
+			<td><%= author.email %></td> 
 			<td><%= author.created_at %></td> 
 			<td>
-				<%= link_to "Editar", edit_author_path(author) %>
-				<%= link_to "Visualizar", author_path(author) %>	
+				<%= link_to("Editar", edit_author_path(author)) if permitted_to? :edit,  author %>
+				<%= link_to "Visualizar", author_path(author) if permitted_to? :show,  author %>	
 				<%= link_to "Excluir", author_path(author), method: :delete, data: { confirm: "Deseja realmente excluir este a"} %>
 				<%= link_to "Notícias", posts_author_path(author.id) %>
 			</td>

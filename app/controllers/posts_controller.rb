@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
+ 
+
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    # @posts = Post.all
   end
 
   # GET /posts/1
@@ -71,4 +73,9 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :body, :author_id)
     end
+
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to posts_path, :notice => "voce nao tem acesso a esta tela"
+  end
 end
