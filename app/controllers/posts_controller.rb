@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
- 
-
   # GET /posts
   # GET /posts.json
   def index
-    # @posts = Post.all
+    if params[:search]
+      @posts = Post.where("title LIKE '%#{params[:search]}%' ")
+    else
+      @posts = Post.all
+    end
   end
 
   # GET /posts/1
@@ -28,13 +30,14 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+    if @post.save
+      respond_to do |format|
+        format.html { redirect_to @post }
+        format.js
+      end
+    else 
+      respond_to do |format|
+        format.js
       end
     end
   end

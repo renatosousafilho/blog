@@ -1,16 +1,11 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
+<%= form_for(@post, :remote=>"true") do |f| %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2></h2>
 
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+      <ul id="lista-erros">
       </ul>
     </div>
-  <% end %>
-
+  
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -20,12 +15,16 @@
     <%= f.text_area :body %>
   </div>
 
- 
-  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+
+<div id="response">Onde vai aparecer o resultado</div>
+
+
+
 
 
 

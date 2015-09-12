@@ -1,0 +1,8 @@
+<% if @post.errors.any? %>
+	$("#lista-erros").html("");
+	<% @post.errors.full_messages.each do |message| %>
+  		$("#lista-erros").append("<li><%= message %></li>");
+    <% end %>
+<% else %>
+	$("#response").html("A noticia #<%= @post.id %> foi cadastrada  com sucesso");
+<% end %>
