@@ -22,7 +22,9 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
+  adapter: mysql2
   encoding: unicode
   database: blog_production
+  username: root
+  password: <%= ENV["PASSWORD_DATABASE"] %>
   
